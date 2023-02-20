@@ -1,0 +1,5 @@
+name,direction,protocol,port,peer
+http,in,tcp,8080,0.0.0.0/0
+ssh,in,tcp,22,0.0.0.0/0;159.162.102.250/32
+all-tcp,out,tcp,1-65535,0.0.0.0/0
+all-udp,out,udp,1-65535,0.0.0.0/0

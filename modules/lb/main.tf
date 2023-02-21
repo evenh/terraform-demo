@@ -10,7 +10,12 @@ resource "acme_registration" "reg" {
 resource "acme_certificate" "certificate" {
   account_key_pem       = acme_registration.reg.account_key_pem
   common_name           = var.tls_fqdn
-  recursive_nameservers = ["8.8.8.8:53", "8.8.4.4:53"]
+  recursive_nameservers = [
+    "8.8.8.8:53", // Google DNS primary
+    "8.8.4.4:53", // Google DNS secondary
+    "1.1.1.1:53", // Cloudflare primary
+    "1.0.0.1:53", // Cloudflare secondary
+  ]
 
   dns_challenge {
     provider = "digitalocean"

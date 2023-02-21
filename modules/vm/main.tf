@@ -9,7 +9,7 @@ resource "digitalocean_droplet" "default" {
   droplet_agent = true
   vpc_uuid      = var.vpc_id
   ssh_keys      = var.ssh_keys
-  user_data     = data.cloudinit_config.boot-script[count.index].rendered
+  user_data     = data.cloudinit_config.boot-script.rendered
 }
 
 # Bruk cloud-init for å bootstrappe maskinen (https://cloudinit.readthedocs.io/)
@@ -19,7 +19,6 @@ resource "digitalocean_droplet" "default" {
 data "cloudinit_config" "boot-script" {
   gzip          = false
   base64_encode = false
-  count         = var.instances
 
   part {
     content_type = "text/x-shellscript"
